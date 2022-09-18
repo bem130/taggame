@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="rarea">
+            <table id="field"></table>
+        </div>
+    </body>
+</html>
+<script>
+
+class Taggame {
+    constructor() {
+        this.fieldx = 9;
+        this.fieldy = 9;
+        this.ply1x = Math.floor(this.fieldx/2);
+        this.ply1y = this.fieldy-1;
+        this.ply1d = 0;
+        this.ply2x = Math.floor(this.fieldx/2);
+        this.ply2y = 0;
+        this.ply2d = 2;
+    }
+}
+
+let game = new Taggame();
+console.log(game)
+show(game);
+
+function show(game) {
+    let table = document.createElement("table");
+    table.className = "board";
+    table.id = "field";
+    let x = game.fieldx;
+    let y = game.fieldy;
+    for (let iy = 0; iy < y; iy++) {
+        let tr = document.createElement("tr");
+        tr.className = "board";
+        for (let ix = 0; ix < x; ix++) {
+            let td = document.createElement("td");
+            td.className = "board";
+            let div = document.createElement("div");
+            div.className = "board";
+            if (game.ply1y==iy&&game.ply1x==ix) {
+                div.className = "board player n1 d"+game.ply1d;
+            }
+            else if (game.ply2y==iy&&game.ply2x==ix) {
+                div.className = "board player n2 d"+game.ply2d;
+            }
+            td.appendChild(div);
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    document.getElementById("field").replaceWith(table);
+}
+
+
+
+
+</script>
+<style>
+    body {
+        background-color: rgb(138, 161, 120);
+    }
+    #rarea {
+        background-color: rgb(235, 223, 116);
+        padding: 1px;
+        border-radius: 5px;
+        position: absolute;
+        top: 0;right: 0;bottom: 0;left: 0;
+        margin: auto;
+        height: fit-content;
+        width: fit-content;
+        box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+    }
+    .board {
+        padding: 0px;
+        margin: 0px;
+    }
+    table.board {
+        background-color: rgb(0, 0, 0);
+        border: 5px solid rgb(83, 110, 138);
+    }
+    td.board {
+        background-color: rgb(176, 153, 41);
+        padding: 5px;
+        height: 40px;
+        width: 40px;
+    }
+    div.board {
+        color: rgba(0, 0, 0, 0);
+        margin: 0px;
+        padding: 0px;
+        height: 40px;
+        width: 40px;
+        border: 0px solid rgba(100, 100, 100, 0);
+    }
+    div.board.player {
+        background-color: rgb(255, 255, 255);
+	    clip-path: polygon( 50% 0%, 85% 30%, 90% 100%, 10% 100%, 15% 30%);
+    }
+    div.board.player.n1 {
+        background-color: rgb(55, 91, 207);
+    }
+    div.board.player.n2 {
+        background-color: rgb(207, 55, 101);
+    }
+    div.board.d0 {
+        transform: rotateZ(0deg)
+    }
+    div.board.d1 {
+        transform: rotateZ(90deg)
+    }
+    div.board.d2 {
+        transform: rotateZ(180deg)
+    }
+    div.board.d3 {
+        transform: rotateZ(270deg)
+    }
+</style>

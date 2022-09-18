@@ -4,6 +4,8 @@
         <div id="rarea">
             <table id="field"></table>
         </div>
+        <div id="controller1" class="controller">
+        </div>
     </body>
 </html>
 <script>
@@ -105,15 +107,22 @@ function show(game) {
         background-color: rgb(207, 55, 101);
     }
     div.board.d0 {
-        transform: rotateZ(0deg)
+        transform: rotateZ(0deg);
     }
     div.board.d1 {
-        transform: rotateZ(90deg)
+        transform: rotateZ(90deg);
     }
     div.board.d2 {
-        transform: rotateZ(180deg)
+        transform: rotateZ(180deg);
     }
     div.board.d3 {
-        transform: rotateZ(270deg)
+        transform: rotateZ(270deg);
+    }
+
+    div.controller {
+        background-color: aquamarine;
+        position: absolute;
+        height: calc(100% - 60%);
+        width: 100px;
     }
 </style>

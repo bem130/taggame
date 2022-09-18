@@ -5,10 +5,44 @@
             <table id="field"></table>
         </div>
         <div id="controller1area" class="controllerarea controller1">
-            <div class="controller"></div>
+            <div class="controller">
+                <span>操作盤</span>
+                <table border>
+                    <tr>
+                        <th>方向転換</th><th>前進</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr><td></td><td><button>上</button></td><td></td></tr>
+                                <tr><td><button>下</button></td><td></td><td><button>左</button></td></tr>
+                                <tr><td></td><td><button>右</button></td><td></td></tr>
+                            </table>
+                        </td>
+                        <td><button>前進</button></td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <div id="controller2area" class="controllerarea controller2">
-            <div class="controller"></div>
+            <div class="controller">
+                <span>操作盤</span>
+                <table border>
+                    <tr>
+                        <th>方向転換</th><th>前進</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr><td></td><td><button>上</button></td><td></td></tr>
+                                <tr><td><button>下</button></td><td></td><td><button>左</button></td></tr>
+                                <tr><td></td><td><button>右</button></td><td></td></tr>
+                            </table>
+                        </td>
+                        <td><button>前進</button></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </body>
 </html>
@@ -18,12 +52,14 @@ class Taggame {
     constructor() {
         this.fieldx = 9;
         this.fieldy = 9;
-        this.ply1x = Math.floor(this.fieldx/2);
-        this.ply1y = this.fieldy-1;
-        this.ply1d = 0;
-        this.ply2x = Math.floor(this.fieldx/2);
-        this.ply2y = 0;
-        this.ply2d = 2;
+        this.count = 0;
+
+        this.ply1x = this.fieldx-1;
+        this.ply1y = Math.floor(this.fieldy/2);
+        this.ply1d = 3;
+        this.ply2x = 0;
+        this.ply2y = Math.floor(this.fieldy/2);
+        this.ply2d = 1;
     }
 }
 
@@ -141,12 +177,14 @@ function show(game) {
         transform: rotateZ(180deg);
     }
     div.controller {
+        transform-origin: top left;
+        transform: rotateZ(90deg);
         margin-top: 260px;
+        margin-left: 170px;
         height: fit-content;
         width: fit-content;
         background-color: rgb(183, 145, 63);
-        height: 100px;
-        width: 500px;
         box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.5);
+        padding: 5px;
     }
 </style>

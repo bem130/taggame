@@ -12,12 +12,12 @@
                     <tr>
                         <td>
                             <table>
-                                <tr><td></td><td><button>上</button></td><td></td></tr>
-                                <tr><td><button>下</button></td><td></td><td><button>左</button></td></tr>
-                                <tr><td></td><td><button>右</button></td><td></td></tr>
+                                <tr><td></td><td><button onclick="turn(1,0)">上</button></td><td></td></tr>
+                                <tr><td><button onclick="turn(1,3)">左</button></td><td></td><td><button onclick="turn(1,1)">右</button></td></tr>
+                                <tr><td></td><td><button onclick="turn(1,2)">下</button></td><td></td></tr>
                             </table>
                         </td>
-                        <td><button>前進</button></td>
+                        <td><button onclick="move(1)">前進</button></td>
                     </tr>
                 </table>
             </div>
@@ -35,7 +35,7 @@
                                 <tr><td></td><td><button>右</button></td><td></td></tr>
                             </table>
                         </td>
-                        <td><button>前進</button></td>
+                        <td><button onclick="move(2)">前進</button></td>
                     </tr>
                 </table>
             </div>
@@ -49,19 +49,92 @@ class Taggame {
         this.fieldx = 9;
         this.fieldy = 9;
         this.count = 0;
+        this.nextplayer = 1;
 
-        this.ply1x = this.fieldx-1;
-        this.ply1y = Math.floor(this.fieldy/2);
-        this.ply1d = 3;
-        this.ply2x = 0;
+        this.ply2x = this.fieldx-1;
         this.ply2y = Math.floor(this.fieldy/2);
-        this.ply2d = 1;
+        this.ply2d = 3;
+        this.ply1x = 0;
+        this.ply1y = Math.floor(this.fieldy/2);
+        this.ply1d = 1;
+    }
+    turn(player,dir) {
+        if (player!=this.nextplayer) {
+            console.error("it isn't your turn");
+            return;
+        }
+        let cs = false;
+        if (dir>=0&&dir<=4) {
+            if (this.nextplayer==1) {
+                dir = (dir+1)%4;
+                if (this.ply1d==dir) {
+                    console.error("you are already heading in that direction");
+                    return;
+                }
+                this.ply1d = dir;cs=true;
+            }
+            else {
+                if (this.ply2d==dir) {
+                    console.error("you are already heading in that direction");
+                    return;
+                }
+                this.ply2d = dir;cs=true;
+            }
+        }
+    }
+    move(player) {
+        if (player!=this.nextplayer) {
+            console.error("it isn't your turn");
+            return;
+        }
+        let cs = false;
+        if (this.nextplayer==1) {
+            switch (this.ply1d) {
+                case 0:
+                    if (this.ply1y>0) {
+                        this.ply1y--;
+                        cs = true;
+                    }
+                break;
+                case 1:
+                    if (this.ply1x<this.fieldx-1) {
+                        this.ply1x++;
+                        cs = true;
+                    }
+                break;
+                case 3:
+                    if (this.ply1y<this.fieldy-1) {
+                        this.ply1y++;
+                        cs = true;
+                    }
+                break;
+                case 4:
+                    if (this.ply1x>0) {
+                        this.ply1x--;
+                        cs = true;
+                    }
+                break;
+            }
+        }
+        else {
+        }
+    }
+    gnextplayer() {
+        if (this.nextplayer==1) {return 2;} return 1;
     }
 }
 
 let game = new Taggame();
-console.log(game)
 show(game);
+
+function move(player) {
+    game.move(player);
+    show(game);
+}
+function turn(player,dir) {
+    game.turn(player,dir);
+    show(game);
+}
 
 function show(game) {
     let table = document.createElement("table");
@@ -137,10 +210,10 @@ function show(game) {
 	    clip-path: polygon( 50% 0%, 85% 30%, 90% 100%, 10% 100%, 15% 30%);
     }
     div.board.player.n1 {
-        background-color: rgb(55, 91, 207);
+        background-color: rgb(207, 55, 101);
     }
     div.board.player.n2 {
-        background-color: rgb(207, 55, 101);
+        background-color: rgb(55, 91, 207);
     }
     div.board.d0 {
         transform: rotateZ(0deg);

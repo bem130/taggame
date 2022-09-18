@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div id="rarea">
-            <table id="field"></table>
-        </div>
-        <div id="controller1area" class="controllerarea controller1">
-            <div class="controller">
-                <span><span id="ct1player"></span></span>
-                <table border>
-                    <tr><th>手数</th></tr>
-                    <tr><td><span id="ct1count"></span>手目</td></tr>
-                </table>
-                <table border>
-                    <tr>
-                        <td>
-                            <table>
-                                <tr><td></td><td><button onclick="turn(1,0)">上</button></td><td></td></tr>
-                                <tr><td><button onclick="turn(1,3)">左</button></td><td></td><td><button onclick="turn(1,1)">右</button></td></tr>
-                                <tr><td></td><td><button onclick="turn(1,2)">下</button></td><td></td></tr>
-                            </table>
-                        </td>
-                        <td><button onclick="move(1)">前進</button></td>
-                    </tr>
-                </table>
+        <div id="gamearea">
+            <div id="rarea">
+                <table id="field"></table>
             </div>
-        </div>
-        <div id="controller2area" class="controllerarea controller2">
-            <div class="controller">
-                <span><span id="ct2player"></span></span>
-                <table border>
-                    <tr><th>手数</th></tr>
-                    <tr><td><span id="ct2count"></span>手目</td></tr>
-                </table>
-                <table border>
-                    <tr>
-                        <td>
-                            <table>
-                                <tr><td></td><td><button onclick="turn(2,0)">上</button></td><td></td></tr>
-                                <tr><td><button onclick="turn(2,3)">左</button></td><td></td><td><button onclick="turn(2,1)">右</button></td></tr>
-                                <tr><td></td><td><button onclick="turn(2,2)">下</button></td><td></td></tr>
-                            </table>
-                        </td>
-                        <td><button onclick="move(2)">前進</button></td>
-                    </tr>
-                </table>
+            <div id="controller1area" class="controllerarea controller1">
+                <div class="controller">
+                    <span><span id="ct1player"></span></span>
+                    <table border>
+                        <tr><th>手数</th></tr>
+                        <tr><td><span id="ct1count"></span>手目</td></tr>
+                    </table>
+                    <table border>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr><td></td><td><button onclick="turn(1,0)">上</button></td><td></td></tr>
+                                    <tr><td><button onclick="turn(1,3)">左</button></td><td></td><td><button onclick="turn(1,1)">右</button></td></tr>
+                                    <tr><td></td><td><button onclick="turn(1,2)">下</button></td><td></td></tr>
+                                </table>
+                            </td>
+                            <td><button onclick="move(1)">前進</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="controller2area" class="controllerarea controller2">
+                <div class="controller">
+                    <span><span id="ct2player"></span></span>
+                    <table border>
+                        <tr><th>手数</th></tr>
+                        <tr><td><span id="ct2count"></span>手目</td></tr>
+                    </table>
+                    <table border>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr><td></td><td><button onclick="turn(2,0)">上</button></td><td></td></tr>
+                                    <tr><td><button onclick="turn(2,3)">左</button></td><td></td><td><button onclick="turn(2,1)">右</button></td></tr>
+                                    <tr><td></td><td><button onclick="turn(2,2)">下</button></td><td></td></tr>
+                                </table>
+                            </td>
+                            <td><button onclick="move(2)">前進</button></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </body>
@@ -117,19 +119,19 @@ class Taggame {
         this.nextplayer = this.gnextplayer();
     }
     isend() {
-        if (this.ply2x==this.ply1x&&this.ply1y==this.ply1y) {
+        if (this.ply2x==this.ply1x&&this.ply2y==this.ply1y) {
             return true;
         }
-        if (this.ply2x+1==this.ply1x&&this.ply1y==this.ply1y) {
+        if (this.ply2x+1==this.ply1x&&this.ply2y==this.ply1y) {
             return true;
         }
-        if (this.ply2x==this.ply1x&&this.ply1y+1==this.ply1y) {
+        if (this.ply2x==this.ply1x&&this.ply2y+1==this.ply1y) {
             return true;
         }
-        if (this.ply2x-1==this.ply1x&&this.ply1y==this.ply1y) {
+        if (this.ply2x-1==this.ply1x&&this.ply2y==this.ply1y) {
             return true;
         }
-        if (this.ply2x==this.ply1x&&this.ply1y-1==this.ply1y) {
+        if (this.ply2x==this.ply1x&&this.ply2y-1==this.ply1y) {
             return true;
         }
         return false;

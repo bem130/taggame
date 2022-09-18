@@ -34,8 +34,8 @@ html,js,cssで構成されており、ブラウザで動作することができ
 
 ### 全体図
 
-ゲーム開始時の状態
+ゲーム開始時の状態  
 ![](screenshoot/initial.png)
 
-ゲーム終了時の例
+ゲーム終了時の例  
 ![](screenshoot/gameset.png)

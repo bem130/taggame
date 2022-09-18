@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </head>
     <body>
         <div id="gamearea">
             <div id="rarea">
@@ -47,6 +50,11 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <button onclick="showreadme()" class="showreadme">使用方法</button>
+        <div id="readme" style="visibility: hidden;">
+            <button onclick="closereadme()" id="closereadme">閉じる</button>
+            <div id="readmetext"></div>
         </div>
     </body>
 </html>
@@ -193,6 +201,19 @@ function show(game) {
 
 
 
+async function showreadme() {
+    let carea = document.getElementById("readmetext");
+    document.getElementById("readme").style.visibility = "visible";
+
+    const readmeRes = await fetch(`./readme.md`, { method: "GET", headers: { "Catch-Control": "max-age=3600" }});
+    const readmemd = await readmeRes.text();
+    carea.innerHTML = marked.parse(readmemd);
+}
+function closereadme() {
+    document.getElementById("readme").style.visibility = "hidden";
+    let carea = document.getElementById("readmetext");
+    carea.innerHTML = "";
+}
 </script>
 <style>
     body {
@@ -287,18 +308,34 @@ function show(game) {
     div.controller td,div.controller th {
         background-color: rgb(203, 166, 85);
     }
-    div.controller button {
+    button {
         border: 1px solid rgb(0, 0, 0);
         margin: 0 2px 2px 0;
         box-shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.5);
         background-color: rgb(220, 183, 133);
     }
-    div.controller button:hover {
+    button:hover {
         background-color: rgb(202, 156, 96);
     }
-    div.controller button:active {
+    button:active {
         background-color: rgb(174, 124, 57);
         margin: 1px 1px 1px 1px;
         box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.5);
+    }
+</style>
+<style>
+
+#readme {
+        border: 1px solid gray;
+        border-radius: 10px;
+        background-color: rgba(197, 192, 163, 0.9);
+        position: fixed;
+        top: 100px;
+        left: 100px;
+        padding: 30px;
+        width: calc(100vw - 240px);
+        height: calc(100vh - 240px);
+        overflow: auto;
+        box-shadow: 2px 2px 5px black;
     }
 </style>

@@ -77,10 +77,10 @@ the red piece is the demon and the blue piece is the child.
 
 ## controller
 use the down-left controller to control the demon, and use the top-right controller to control the child.  
-push "上","下","右","左" buttons to change the direction, these button's letter meen "up","down","right","left".
-push "前進" to move forward, this button`s letter means "move forward".
-when done the action, upper side display changes.
-if the display don't change, you don't select acailable action. please reselect available action.
+push "上","下","右","左" buttons to change the direction, these button's letter meen "up","down","right","left".  
+push "前進" to move forward, this button`s letter means "move forward".  
+when done the action, upper side display changes.  
+if the display don't change, you don't select acailable action. please reselect available action.  
 ![](screenshoot/controller.png)
 
 ### appearance
